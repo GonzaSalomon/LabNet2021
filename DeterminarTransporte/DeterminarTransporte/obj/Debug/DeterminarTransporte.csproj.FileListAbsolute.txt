@@ -1,0 +1,7 @@
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\obj\Debug\DeterminarTransporte.csprojAssemblyReference.cache
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\obj\Debug\DeterminarTransporte.csproj.CoreCompileInputs.cache
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\bin\Debug\DeterminarTransporte.exe.config
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\bin\Debug\DeterminarTransporte.exe
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\bin\Debug\DeterminarTransporte.pdb
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\obj\Debug\DeterminarTransporte.exe
+C:\Users\Gonzalo Salomon\source\repos\DeterminarTransporte\DeterminarTransporte\obj\Debug\DeterminarTransporte.pdb
