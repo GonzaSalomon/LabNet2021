@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DeterminarTransporte
 {
+    interface IVehiculoAereo
+    {
+        void CantidadTurbinas();
+    }
     public abstract class Transporte
     {
         private int cantidadPasajeros;

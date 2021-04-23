@@ -11,6 +11,7 @@ namespace DeterminarTransporte
     {
         static void Main(string[] args)
         {
+
             int posicion = 1;
             int posicionVehiculo = 0;
             var rand = new Random();
