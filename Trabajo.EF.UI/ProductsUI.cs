@@ -11,7 +11,7 @@ namespace Trabajo.EF.UI
 {
     public class ProductsUI
     {
-        public void ShowProducts(ProductsLogic productsList)
+        public static void ShowProducts(ProductsLogic productsList)
         {
             foreach (Products product in productsList.GetAll())
             {
@@ -20,7 +20,7 @@ namespace Trabajo.EF.UI
             }
         }
 
-        public void InsertProducts(ProductsLogic productsList)
+        public static void InsertProducts(ProductsLogic productsList)
         {
             Console.WriteLine("\nIngrese el nombre del producto: ");
             string productNameVar = InsertException.ExceptionString();
@@ -41,7 +41,7 @@ namespace Trabajo.EF.UI
             ShowProducts(productsList);
         }
 
-        public void DeleteProducts(ProductsLogic productsList)
+        public static void DeleteProducts(ProductsLogic productsList)
         {
             Console.WriteLine("Ingrese el id del producto que desea eliminar: ");
             int productIdVar = InsertException.ExceptionInt();

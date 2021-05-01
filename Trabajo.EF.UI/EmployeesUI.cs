@@ -10,7 +10,7 @@ namespace Trabajo.EF.UI
 {
     public class EmployeesUI
     {
-        public void ShowEmployees(EmployeesLogic employeesList)
+        public static void ShowEmployees(EmployeesLogic employeesList)
         {
             foreach (Employees employee in employeesList.GetAll())
             {
@@ -20,7 +20,7 @@ namespace Trabajo.EF.UI
             }
         }
 
-        public void UpdateEmployees(EmployeesLogic employeesList)
+        public static void UpdateEmployees(EmployeesLogic employeesList)
         {
             Console.WriteLine("Ingrese el id del empleado que desea modificar: ");
             int idVar = Convert.ToInt32(Console.ReadLine());

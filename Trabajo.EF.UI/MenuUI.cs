@@ -13,39 +13,36 @@ namespace Trabajo.EF.UI
     {
         public void FunctionMenu(ProductsLogic productsList, EmployeesLogic employeesList, int optionMenu)
         {
-            EmployeesUI employeesUI = new EmployeesUI();
-            ProductsUI productUI = new ProductsUI();
-
             switch (optionMenu)
             {
                 case 1:
                     Console.WriteLine("\n\nListado de productos: \n");
-                    productUI.ShowProducts(productsList);
+                    ProductsUI.ShowProducts(productsList);
                     optionMenu = 0;
                     FunctionMenu(productsList, employeesList, optionMenu);
                     break;
 
                 case 2:
                     Console.WriteLine("\n\nListado de empleados: \n");
-                    employeesUI.ShowEmployees(employeesList);
+                    EmployeesUI.ShowEmployees(employeesList);
                     optionMenu = 0;
                     FunctionMenu(productsList, employeesList, optionMenu);
                     break;
 
                 case 3:
-                    productUI.InsertProducts(productsList);
+                    ProductsUI.InsertProducts(productsList);
                     optionMenu = 0;
                     FunctionMenu(productsList, employeesList, optionMenu);
                     break;
 
                 case 4:
-                    employeesUI.UpdateEmployees(employeesList);
+                    EmployeesUI.UpdateEmployees(employeesList);
                     optionMenu = 0;
                     FunctionMenu(productsList, employeesList, optionMenu);
                     break;
 
                 case 5:
-                    productUI.DeleteProducts(productsList);
+                    ProductsUI.DeleteProducts(productsList);
                     optionMenu = 0;
                     FunctionMenu(productsList, employeesList, optionMenu);
                     break;
