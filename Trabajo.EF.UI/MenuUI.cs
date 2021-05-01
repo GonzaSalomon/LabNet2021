@@ -73,6 +73,5 @@ namespace Trabajo.EF.UI
 
             FunctionMenu(productsList, employeesList, optionMenu);
         }
-
     }
 }
