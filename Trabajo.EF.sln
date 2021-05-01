@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1500
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trabajo.EF.UI", "Trabajo.EF.UI\Trabajo.EF.UI.csproj", "{D366A037-13F6-46EC-83B9-52F7DD2E0231}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trabajo.EF.Logic", "Trabajo.EF.Logic\Trabajo.EF.Logic.csproj", "{5BBD317C-E852-43B6-A0DD-D4AB0C182EBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trabajo.EF.Data", "Trabajo.EF.Data\Trabajo.EF.Data.csproj", "{2F8501A7-CFDF-4CD8-B86C-7DD596AFE7F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trabajo.EF.Entities", "Trabajo.EF.Entities\Trabajo.EF.Entities.csproj", "{EF7FC822-AC05-40FF-933F-8BFC4013D733}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trabajo.EF.UI", "Trabajo.EF.UI\Trabajo.EF.UI.csproj", "{D366A037-13F6-46EC-83B9-52F7DD2E0231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
