@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Practica.LINQ.UI
 {
-    class Program
+    public class MenuUI
     {
-        static void Main(string[] args)
+        public void FunctionMenu()
         {
-            MenuUI menu = new MenuUI();
-            menu.AccessMenu();
+
+        }
+
+        public void AccessMenu()
+        {
+
         }
     }
 }
