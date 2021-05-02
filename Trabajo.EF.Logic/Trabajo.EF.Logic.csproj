@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
+    <Compile Include="CategoriesLogic.cs" />
     <Compile Include="EmployeesLogic.cs" />
     <Compile Include="Exceptions\InsertException.cs" />
     <Compile Include="Exceptions\MenuExceptions.cs" />

@@ -28,9 +28,14 @@ namespace Trabajo.EF.Logic
             context.SaveChanges();
         }
 
-        public void Update(Products product)
+        public void Update(Products productList)
         {
-            throw new NotImplementedException();
+            var productUpdate = context.Products.Where(p => p.CategoryID == productList.CategoryID).ToList();
+            foreach (Products products in productUpdate)
+            {
+                products.CategoryID = null;
+            }
+            context.SaveChanges();
         }
     }
 }

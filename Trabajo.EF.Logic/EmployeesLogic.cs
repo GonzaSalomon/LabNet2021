@@ -29,6 +29,7 @@ namespace Trabajo.EF.Logic
         {
             var employeeUpdate = context.Employees.Find(employee.EmployeeID);
             employeeUpdate.PostalCode = employee.PostalCode;
+            context.SaveChanges();
         }
     }
 }

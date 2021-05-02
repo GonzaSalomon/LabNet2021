@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriesUI.cs" />
     <Compile Include="EmployeesUI.cs" />
     <Compile Include="MenuUI.cs" />
     <Compile Include="ProductsUI.cs" />
