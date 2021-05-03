@@ -50,7 +50,7 @@ namespace Practica.LINQ.UI
             AskContinue();
 
             commu.CustomersCountOrders();
-            Console.WriteLine("\n\nPresione 'Enter para cerrar el programa'");
+            Console.WriteLine("\n\nPresione 'Enter' para cerrar el programa");
             Console.ReadLine();
             Environment.Exit(0);
         }
