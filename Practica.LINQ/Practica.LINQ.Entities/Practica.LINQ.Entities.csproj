@@ -52,7 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories.cs" />
+    <Compile Include="CustomEntities\ProductCategory.cs" />
+    <Compile Include="CustomEntities\ProductsBase.cs" />
+    <Compile Include="CustomEntities\ProductsWStock.cs" />
     <Compile Include="Customers.cs" />
+    <Compile Include="CustomEntities\CustomersName.cs" />
+    <Compile Include="CustomEntities\CustomersOrders.cs" />
+    <Compile Include="CustomEntities\CustomersTop.cs" />
+    <Compile Include="CustomEntities\CustomerWashington.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="Order_Details.cs" />
     <Compile Include="Products.cs" />
@@ -62,6 +69,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

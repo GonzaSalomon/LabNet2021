@@ -51,10 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\CategoriesQueries.cs" />
     <Compile Include="Queries\CustomersQueries.cs" />
-    <Compile Include="Queries\OrderQueries.cs" />
     <Compile Include="Queries\ProductsQueries.cs" />
   </ItemGroup>
   <ItemGroup>

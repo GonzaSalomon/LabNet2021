@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Practica.LINQ.Data;
+using Practica.LINQ.Entities;
+using Practica.LINQ.Entities.CustomEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practica.LINQ.Data;
-using Practica.LINQ.Entities;
 
 namespace Practica.LINQ.Logic.Queries
 {
@@ -12,18 +11,18 @@ namespace Practica.LINQ.Logic.Queries
     {
         NorthwindContext db = new NorthwindContext();
 
-        public void ProductsNoStock()
+        public List<ProductsBase> ProductsNoStock()
         {
             Console.WriteLine("2 - Productos sin stock: \n");
 
             var queryNoStock = from product in db.Products
                                where product.UnitsInStock == 0
-                               select new
+                               select new ProductsBase()
                                {
-                                   product.ProductID,
-                                   product.ProductName,
-                                   product.UnitPrice,
-                                   product.UnitsOnOrder
+                                   ProductID = product.ProductID,
+                                   ProductName = product.ProductName,
+                                   UnitPrice = product.UnitPrice,
+                                   UnitsOnOrder = product.UnitsOnOrder
                                };
 
             foreach (var product in queryNoStock)
@@ -33,86 +32,137 @@ namespace Practica.LINQ.Logic.Queries
                                   $"Precio por unidad: {product.UnitPrice} - " +
                                   $"Unidades en espera: {product.UnitsOnOrder}");
             }
+
+            return queryNoStock.ToList();
         }
 
-        public void ProductsPlusThreeStock()
+        public List<ProductsWStock> ProductsPlusThreeStock()
         {
             Console.WriteLine("3 - Productos en stock y que cuestan más de 3 por unidad: \n");
 
             var queryPlusThree = from product in db.Products
                                  where product.UnitsInStock != 0
                                     && product.UnitPrice > 3
-                                 select new
+                                 select new ProductsWStock()
                                  {
-                                     product.UnitsInStock,
-                                     product.ProductID,
-                                     product.ProductName,
-                                     product.UnitPrice
+                                     ProductID = product.ProductID,
+                                     ProductName = product.ProductName,
+                                     UnitPrice = product.UnitPrice,
+                                     UnitsInStock = product.UnitsInStock
                                  };
 
-            foreach (var product in queryPlusThree)
-            {
-                Console.WriteLine($"ID: {product.ProductID} - " +
-                                  $"Nombre del producto: {product.ProductName}\n   " +
-                                  $"Precio por unidad: {product.UnitPrice}\t- " +
-                                  $"Cantidad en stock: {product.UnitsInStock}");
-            }
+            ShowProduct(queryPlusThree.ToList());
+
+            return queryPlusThree.ToList();
         }
 
-        public void ProductOrNull()
+        public void ProductOrNull(List<Products> products)
         {
             Console.WriteLine("5 - Primer producto con ID 789 o nulo: \n");
 
-            var productOrNull = db.Products
-                                  .FirstOrDefault(p => p.ProductID == 789);
+            var productOrNull = products.FirstOrDefault(p => p.ProductID == 789);
 
             if (productOrNull == null) Console.WriteLine("\nNo se encontró ningún producto con id 789");
-            else Console.WriteLine($"\nNombre del producto: {productOrNull.ProductName}" +
-                                   $"\nPrecio unitario: {productOrNull.UnitPrice}");
+            else Console.WriteLine($"\nNombre del producto: {productOrNull.ProductName}\n" +
+                                   $"Precio unitario: {productOrNull.UnitPrice}\n   " +
+                                   $"Unidades en stock: {productOrNull.UnitsInStock} - " +
+                                   $"Precio unitario: {productOrNull.UnitPrice}");
         }
 
-        public void ProductsOrderedByName()
+        public List<ProductsWStock> ProductsOrderedByName()
         {
             Console.WriteLine("9 - Listado de productos ordenados por el nombre: \n");
 
             var queryProdByName = db.Products
-                                    .Select(p => new
+                                    .Select(p => new ProductsWStock()
                                     {
-                                        p.ProductName,
-                                        p.ProductID,
-                                        p.UnitPrice,
-                                        p.UnitsInStock
+                                        ProductName = p.ProductName,
+                                        ProductID = p.ProductID,
+                                        UnitPrice = p.UnitPrice,
+                                        UnitsInStock = p.UnitsInStock
                                     })
                                     .OrderBy(p => p.ProductName)
                                     .ToList();
 
-            foreach (var product in queryProdByName)
-            {
-                Console.WriteLine($"Nombre: {product.ProductName} - " +
-                                  $"ID: {product.ProductID}\n   " +
-                                  $"Precio unitario: {product.UnitPrice} - " +
-                                  $"Cantidad en stock: {product.UnitsInStock}");
-            }
+            ShowProduct(queryProdByName);
+
+            return queryProdByName;
         }
 
-        public void ProductsOrderedByUnitStock()
+        public List<ProductsWStock> ProductsOrderedByUnitStock()
         {
             Console.WriteLine("10 - Lista de productos ordenados por cantidad en stock de mayor a menor: \n");
 
             var queryProdByStock = db.Products
-                                     .Select(p => new
+                                     .Select(p => new ProductsWStock()
                                      {
-                                         p.UnitsInStock,
-                                         p.ProductID,
-                                         p.ProductName
+                                         UnitsInStock = p.UnitsInStock,
+                                         ProductID = p.ProductID,
+                                         ProductName = p.ProductName,
+                                         UnitPrice = p.UnitPrice
                                      })
-                                     .OrderByDescending(p => p.UnitsInStock);
+                                     .OrderByDescending(p => p.UnitsInStock)
+                                     .ToList();
 
-            foreach (var product in queryProdByStock)
+            ShowProduct(queryProdByStock);
+
+            return queryProdByStock;
+        }
+
+        public List<ProductCategory> ProductsAssociatedCategory()
+        {
+            Console.WriteLine("11 - Lista de categorías asociadas a los productos: \n");
+
+            var queryAssociation = from product in db.Products
+                                   join category in db.Categories
+                                   on new { product.CategoryID }
+                                       equals new { CategoryID = (int?)category.CategoryID }
+                                   select new ProductCategory()
+                                   {
+                                       ProductID = product.ProductID,
+                                       ProductName = product.ProductName,
+                                       CategoryID = category.CategoryID,
+                                       CategoryName = category.CategoryName
+                                   };
+
+            foreach (var item in queryAssociation)
+            {
+                Console.WriteLine($"ID del producto: {item.ProductID} - " +
+                                  $"Nombre del producto: {item.ProductName}\n   " +
+                                  $"Categoría: {item.CategoryName}");
+            }
+
+            return queryAssociation.ToList();
+        }
+
+        public List<ProductsWStock> ProductsFirstList(List<Products> listaProd)
+        {
+            Console.WriteLine("12 - Primer elemento de una lista de productos: \n");
+
+            var queryFirstProduct = from product in listaProd
+                                    select new ProductsWStock()
+                                    {
+                                        ProductID = product.ProductID,
+                                        ProductName = product.ProductName,
+                                        UnitPrice = product.UnitPrice,
+                                        UnitsInStock = product.UnitsInStock
+                                    };
+
+            var queryTop = queryFirstProduct.Take(1).ToList();
+
+            ShowProduct(queryTop);
+
+            return queryTop;
+        } 
+
+        private void ShowProduct(List<ProductsWStock> productList)
+        {
+            foreach (var product in productList)
             {
                 Console.WriteLine($"ID: {product.ProductID} - " +
                                   $"Nombre: {product.ProductName}\n   " +
-                                  $"Unidades en stock: {product.UnitsInStock}");
+                                  $"Unidades en stock: {product.UnitsInStock} - " +
+                                  $"Precio unitario: {product.UnitPrice}");
             }
         }
     }

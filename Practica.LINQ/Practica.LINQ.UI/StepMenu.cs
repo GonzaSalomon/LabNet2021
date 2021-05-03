@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practica.LINQ.Logic.Queries;
-using Practica.LINQ.Data;
+﻿using Practica.LINQ.Logic;
+using System;
 
 namespace Practica.LINQ.UI
 {
@@ -12,46 +7,52 @@ namespace Practica.LINQ.UI
     {
         public void StepByStep()
         {
-            CustomersQueries customerQ = new CustomersQueries();
-            CategoriesQueries categorieQ = new CategoriesQueries();
-            OrderQueries orderQ = new OrderQueries();
-            ProductsQueries productQ = new ProductsQueries();
+            CommunicationLogic commu = new CommunicationLogic();
             
             Console.WriteLine("Este programa muestra por consola las diferentes queries" +
                               " solicitadas.\n\nPresione 'Enter' para continuar");
-            //Console.ReadLine();
+            Console.ReadLine();
 
-            //customerQ.CustomerQueryFull();
-            //AskContinue();
+            commu.CustomerQueryFull();
+            AskContinue();
 
-            //productQ.ProductsNoStock();
-            //AskContinue();
+            commu.ProductsNoStock();
+            AskContinue();
 
-            //productQ.ProductsPlusThreeStock();
-            //AskContinue();
+            commu.ProductsPlusThreeStock();
+            AskContinue();
 
-            //customerQ.CustomersFromWashington();
-            //AskContinue();
+            commu.CustomersFromWashington();
+            AskContinue();
 
-            //productQ.ProductOrNull();
-            //AskContinue();
+            commu.ProductOrNull();
+            AskContinue();
 
-            //customerQ.CustomersToUpperToLow();
-            //AskContinue();
+            commu.CustomersToUpperToLow();
+            AskContinue();
 
-            //customerQ.CustomersWashington1997();
-            //AskContinue();
+            commu.CustomersWashington1997();
+            AskContinue();
 
-            //customerQ.CustomersTopThreeWashington();
-            //AskContinue();
+            commu.CustomersTopThreeWashington();
+            AskContinue();
 
-            //productQ.ProductsOrderedByName();
-            //AskContinue();
+            commu.ProductsOrderedByName();
+            AskContinue();
 
-            //productQ.ProductsOrderedByUnitStock();
-            //AskContinue();
+            commu.ProductsOrderedByUnitStock();
+            AskContinue();
 
+            commu.ProductsAssocitedCategory();
+            AskContinue();
 
+            commu.ProducsFirstList();
+            AskContinue();
+
+            commu.CustomersCountOrders();
+            Console.WriteLine("\n\nPresione 'Enter para cerrar el programa'");
+            Console.ReadLine();
+            Environment.Exit(0);
         }
 
         public void AskContinue()
