@@ -53,13 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Practica.LINQ.Data\Practica.LINQ.Data.csproj">
+      <Project>{85a1993d-aa8e-47b3-b4e0-377efff662c9}</Project>
+      <Name>Practica.LINQ.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practica.LINQ.Logic\Practica.LINQ.Logic.csproj">
+      <Project>{68f6ef34-ecd3-41f6-bf6f-099219bb0862}</Project>
+      <Name>Practica.LINQ.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

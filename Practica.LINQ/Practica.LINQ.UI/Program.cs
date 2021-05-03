@@ -10,8 +10,8 @@ namespace Practica.LINQ.UI
     {
         static void Main(string[] args)
         {
-            MenuUI menu = new MenuUI();
-            menu.AccessMenu();
+            StepMenu menu = new StepMenu();
+            menu.StepByStep();
         }
     }
 }
