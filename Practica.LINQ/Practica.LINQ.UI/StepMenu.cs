@@ -39,12 +39,24 @@ namespace Practica.LINQ.UI
             //customerQ.CustomersToUpperToLow();
             //AskContinue();
 
+            //customerQ.CustomersWashington1997();
+            //AskContinue();
+
+            //customerQ.CustomersTopThreeWashington();
+            //AskContinue();
+
+            //productQ.ProductsOrderedByName();
+            //AskContinue();
+
+            //productQ.ProductsOrderedByUnitStock();
+            //AskContinue();
+
 
         }
 
         public void AskContinue()
         {
-            Console.WriteLine("\n\nPresione 'Enter' para continuar con la siguiente query");
+            Console.WriteLine("\n\nPresione 'Enter' para continuar con la siguiente query\n");
             Console.ReadLine();
         }
     }
