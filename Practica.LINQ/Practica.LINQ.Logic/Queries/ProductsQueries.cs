@@ -13,8 +13,6 @@ namespace Practica.LINQ.Logic.Queries
 
         public List<ProductsBase> ProductsNoStock()
         {
-            Console.WriteLine("2 - Productos sin stock: \n");
-
             var queryNoStock = from product in db.Products
                                where product.UnitsInStock == 0
                                select new ProductsBase()
@@ -25,21 +23,11 @@ namespace Practica.LINQ.Logic.Queries
                                    UnitsOnOrder = product.UnitsOnOrder
                                };
 
-            foreach (var product in queryNoStock)
-            {
-                Console.WriteLine($"ID: {product.ProductID} - " +
-                                  $"Nombre del producto: {product.ProductName}\n  " +
-                                  $"Precio por unidad: {product.UnitPrice} - " +
-                                  $"Unidades en espera: {product.UnitsOnOrder}");
-            }
-
             return queryNoStock.ToList();
         }
 
         public List<ProductsWStock> ProductsPlusThreeStock()
         {
-            Console.WriteLine("3 - Productos en stock y que cuestan más de 3 por unidad: \n");
-
             var queryPlusThree = from product in db.Products
                                  where product.UnitsInStock != 0
                                     && product.UnitPrice > 3
@@ -50,29 +38,19 @@ namespace Practica.LINQ.Logic.Queries
                                      UnitPrice = product.UnitPrice,
                                      UnitsInStock = product.UnitsInStock
                                  };
-
-            ShowProduct(queryPlusThree.ToList());
-
+            
             return queryPlusThree.ToList();
         }
 
-        public void ProductOrNull(List<Products> products)
+        public Products ProductOrNull(List<Products> products)
         {
-            Console.WriteLine("5 - Primer producto con ID 789 o nulo: \n");
-
-            var productOrNull = products.FirstOrDefault(p => p.ProductID == 789);
-
-            if (productOrNull == null) Console.WriteLine("\nNo se encontró ningún producto con id 789");
-            else Console.WriteLine($"\nNombre del producto: {productOrNull.ProductName}\n" +
-                                   $"Precio unitario: {productOrNull.UnitPrice}\n   " +
-                                   $"Unidades en stock: {productOrNull.UnitsInStock} - " +
-                                   $"Precio unitario: {productOrNull.UnitPrice}");
+            var productOrNull = db.Products.FirstOrDefault(p => p.ProductID == 789);
+            
+            return productOrNull;
         }
 
         public List<ProductsWStock> ProductsOrderedByName()
         {
-            Console.WriteLine("9 - Listado de productos ordenados por el nombre: \n");
-
             var queryProdByName = db.Products
                                     .Select(p => new ProductsWStock()
                                     {
@@ -83,16 +61,12 @@ namespace Practica.LINQ.Logic.Queries
                                     })
                                     .OrderBy(p => p.ProductName)
                                     .ToList();
-
-            ShowProduct(queryProdByName);
-
+            
             return queryProdByName;
         }
 
         public List<ProductsWStock> ProductsOrderedByUnitStock()
         {
-            Console.WriteLine("10 - Lista de productos ordenados por cantidad en stock de mayor a menor: \n");
-
             var queryProdByStock = db.Products
                                      .Select(p => new ProductsWStock()
                                      {
@@ -103,16 +77,12 @@ namespace Practica.LINQ.Logic.Queries
                                      })
                                      .OrderByDescending(p => p.UnitsInStock)
                                      .ToList();
-
-            ShowProduct(queryProdByStock);
-
+            
             return queryProdByStock;
         }
 
         public List<ProductCategory> ProductsAssociatedCategory()
         {
-            Console.WriteLine("11 - Lista de categorías asociadas a los productos: \n");
-
             var queryAssociation = from product in db.Products
                                    join category in db.Categories
                                    on new { product.CategoryID }
@@ -125,20 +95,11 @@ namespace Practica.LINQ.Logic.Queries
                                        CategoryName = category.CategoryName
                                    };
 
-            foreach (var item in queryAssociation)
-            {
-                Console.WriteLine($"ID del producto: {item.ProductID} - " +
-                                  $"Nombre del producto: {item.ProductName}\n   " +
-                                  $"Categoría: {item.CategoryName}");
-            }
-
             return queryAssociation.ToList();
         }
 
         public List<ProductsWStock> ProductsFirstList(List<Products> listaProd)
         {
-            Console.WriteLine("12 - Primer elemento de una lista de productos: \n");
-
             var queryFirstProduct = from product in listaProd
                                     select new ProductsWStock()
                                     {
@@ -149,21 +110,9 @@ namespace Practica.LINQ.Logic.Queries
                                     };
 
             var queryTop = queryFirstProduct.Take(1).ToList();
-
-            ShowProduct(queryTop);
-
             return queryTop;
         } 
 
-        private void ShowProduct(List<ProductsWStock> productList)
-        {
-            foreach (var product in productList)
-            {
-                Console.WriteLine($"ID: {product.ProductID} - " +
-                                  $"Nombre: {product.ProductName}\n   " +
-                                  $"Unidades en stock: {product.UnitsInStock} - " +
-                                  $"Precio unitario: {product.UnitPrice}");
-            }
-        }
+
     }
 }

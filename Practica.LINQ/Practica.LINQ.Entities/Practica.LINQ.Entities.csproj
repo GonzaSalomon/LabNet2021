@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories.cs" />
+    <Compile Include="CustomEntities\CustomersCount.cs" />
     <Compile Include="CustomEntities\ProductCategory.cs" />
     <Compile Include="CustomEntities\ProductsBase.cs" />
     <Compile Include="CustomEntities\ProductsWStock.cs" />

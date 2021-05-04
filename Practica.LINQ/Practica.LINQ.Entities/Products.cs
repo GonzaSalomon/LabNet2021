@@ -5,6 +5,7 @@ namespace Practica.LINQ.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Practica.LINQ.Entities.CustomEntities;
 
     public partial class Products
     {
@@ -43,5 +44,10 @@ namespace Practica.LINQ.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Details> Order_Details { get; set; }
+
+        public object Select(Func<object, ProductsWStock> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
