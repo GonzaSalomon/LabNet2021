@@ -1,0 +1,13 @@
+form{
+    background-color: #8d999c;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+form div {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 3px;
+    border: solid 1px;
+}
