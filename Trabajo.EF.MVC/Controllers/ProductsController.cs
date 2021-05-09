@@ -23,7 +23,7 @@ namespace Trabajo.EF.MVC.Controllers
         {
             try
             {
-                if (productsView.ProductName.Length > 40){ throw new ArgumentOutOfRangeException();}
+                if (productsView.ProductName.Length > 40){ throw new ArgumentOutOfRangeException(productsView.ProductName, "El nombre del producto es muy largo");}
                 if (productsView.UnitsInStock < 0 || productsView.UnitsInStock > 255) { throw new ArgumentOutOfRangeException(); }
                 if (productsView.UnitPrice < -922337203685477 || productsView.UnitPrice > 922337203685477) { throw new ArgumentOutOfRangeException(); }
                     var productsEntity = new Products
@@ -70,6 +70,20 @@ namespace Trabajo.EF.MVC.Controllers
         {
             try
             {
+                if (productsView.ProductID < -2147483648 || productsView.ProductID > 2147483647) { throw new ArgumentOutOfRangeException(); }
+                if (productsView.ProductName.Length > 40) { throw new ArgumentOutOfRangeException(); }
+                if (productsView.UnitsInStock < 0 || productsView.UnitsInStock > 255) { throw new ArgumentOutOfRangeException(); }
+                if (productsView.UnitPrice < -922337203685477 || productsView.UnitPrice > 922337203685477) { throw new ArgumentOutOfRangeException(); }
+                var productsEntity = new Products
+                {
+                    ProductName = productsView.ProductName,
+                    UnitPrice = productsView.UnitPrice,
+                    UnitsInStock = productsView.UnitsInStock,
+                    Discontinued = false
+                };
+
+                logic.Update(productsEntity.ProductID, productsEntity);
+                
                 return RedirectToAction("Consult");
             }
             catch (Exception ex)
@@ -89,8 +103,12 @@ namespace Trabajo.EF.MVC.Controllers
             return RedirectToAction("Consult");
         }
 
-        public ActionResult PreModify(int id)
+        public ActionResult PreModify(int id, string name, decimal price, short stock)
         {
+            ViewBag.Id = id;
+            ViewBag.Name = name;
+            ViewBag.Price = price;
+            ViewBag.Stock = stock;
             return View();
         }
     }

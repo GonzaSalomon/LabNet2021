@@ -38,12 +38,12 @@ namespace Trabajo.EF.Logic
             context.SaveChanges();
         }
 
-        public void Update(int id, string productName, decimal unitPrice, short unitsStock)
+        public void Update(int id, Products productList)
         {
             var productUpdate = context.Products.FirstOrDefault(p => p.ProductID == id);
-            productUpdate.ProductName = productName;
-            if (unitPrice != 0) { productUpdate.UnitPrice = unitPrice; }
-            if (unitsStock != 0) { productUpdate.UnitsInStock = unitsStock; }
+            productUpdate.ProductName = productList.ProductName;
+            if (productList.UnitPrice != 0) { productUpdate.UnitPrice = productList.UnitPrice; }
+            if (productList.UnitsInStock != 0) { productUpdate.UnitsInStock = productList.UnitsInStock; }
             context.SaveChanges();
         }
     }
