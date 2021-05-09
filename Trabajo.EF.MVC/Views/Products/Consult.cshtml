@@ -1,0 +1,45 @@
+﻿@model List<Trabajo.EF.MVC.Models.ProductsView>
+
+@{
+    ViewBag.Title = "Consultas";
+}
+<style>
+    a {
+        color: #9d9d9d;
+    }
+    a:hover {
+        color: #fff;
+    }
+    button {
+        background-color: #3a3f41;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id del producto</th>
+            <th>Nombre del producto</th>
+            <th>Precio por unidad</th>
+            <th>Unidades en stock</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var products in Model)
+        {
+            <tr>
+                <td>@products.ProductID</td>
+                <td>@products.ProductName</td>
+                <td>@products.UnitPrice</td>
+                <td>@products.UnitsInStock</td>
+                <td>@Html.ActionLink("Modificar", "Modify")</td>
+                <td>@Html.ActionLink("Borrar", "Delete", new { id = products.ProductID}, new { onclick = "return confirm('Está seguro de que desea eliminar el producto? Esta acción no tiene vuelta atrás')"})</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<button class="btn btn-group-justified">@Html.ActionLink("Volver a Productos", "Index")</button>

@@ -1,0 +1,23 @@
+﻿@model Trabajo.EF.MVC.Models.ProductsView
+@{
+    ViewBag.Title = "El producto se cargó correctamente";
+}
+
+<style>
+    a {
+        color: #9d9d9d;
+    }
+
+        a:hover {
+            color: #fff;
+        }
+
+    button {
+        background-color: #3a3f41;
+    }
+</style>
+
+<h1>@ViewBag.Title</h1>
+
+<br />
+<button class="btn btn-group-justified">@Html.ActionLink("Volver a Productos", "Index")</button>
