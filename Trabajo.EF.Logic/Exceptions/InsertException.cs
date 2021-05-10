@@ -17,8 +17,6 @@ namespace Trabajo.EF.Logic.Exceptions
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Mensaje de error: " + ex.Message);
-                Console.WriteLine("StackTrace" + ex.StackTrace);
                 throw ex;
             }
         }
