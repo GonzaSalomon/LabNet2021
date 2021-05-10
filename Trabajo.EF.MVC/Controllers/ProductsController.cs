@@ -82,9 +82,17 @@ namespace Trabajo.EF.MVC.Controllers
                     Discontinued = false
                 };
 
-                logic.Update(productsEntity.ProductID, productsEntity);
+                logic.Update(productsView.ProductID, productsEntity);
                 
                 return RedirectToAction("Consult");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return RedirectToAction("Index", "Error", ex);
+            }
+            catch (NullReferenceException ex)
+            {
+                return RedirectToAction("Index", "Error", ex);
             }
             catch (Exception ex)
             {

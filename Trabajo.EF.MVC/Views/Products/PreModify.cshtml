@@ -37,8 +37,10 @@
         <label>Unidades en stock</label>
         <input type="text" class="form-control" name="UnitsInStock" id="UnitsInStock" placeholder="Ingrese la cantidad de producto en stock" value="@ViewBag.Stock">
     </div>
-    <button type="submit" class="btn btn-primary"for style="background-color: #3a3f41;">Cargar</button>
-        }
+    <button type="submit" class="btn btn-primary" for style="background-color: #3a3f41;">Cargar</button>
+}
 
 <br />
 <button type="submit" class="btn btn-group-justified">@Html.ActionLink("Volver a Productos", "Index")</button>
+<br />
+<button type="submit" class="btn btn-group-justified">@Html.ActionLink("Volver a Catálogo", "Consult")</button>
