@@ -52,7 +52,14 @@ namespace Trabajo.EF.Logic
             productUpdate.ProductName = productList.ProductName;
             if (productList.UnitPrice != 0) { productUpdate.UnitPrice = productList.UnitPrice; }
             if (productList.UnitsInStock != 0) { productUpdate.UnitsInStock = productList.UnitsInStock; }
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Trabajo.EF.Entities;
 using Trabajo.EF.Logic;
@@ -28,15 +29,44 @@ namespace Trabajo.EF.WebApi.Controllers
         }
 
         [HttpPost]
-        public void Post(string value)
+        public HttpResponseMessage Post(Products product)
         {
-
+            try
+            {
+                logic.Add(product);
+                return Request.CreateResponse(HttpStatusCode.OK, product);
+            }
+            catch (Exception)
+            {
+                var message = string.Format("Ocurrió un error");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+            }
         }
 
         [HttpPut]
-        public void Put(int id, string value)
+        public HttpResponseMessage Put(Products product)
         {
-
+            Products productChecker = this.Get(product.ProductID);
+            if (productChecker == null)
+            {
+                var message = string.Format("No existe un producto con el id {0}", product.ProductID);
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+            }
+            try
+            {
+                if (product.ProductID < -2147483648 || product.ProductID > 2147483647) { throw new ArgumentOutOfRangeException(); }
+                if (product.ProductName.Length > 40) { throw new ArgumentOutOfRangeException(); }
+                if (product.UnitsInStock < 0 || product.UnitsInStock > 255) { throw new ArgumentOutOfRangeException(); }
+                if (product.UnitPrice < -922337203685477 || product.UnitPrice > 922337203685477) { throw new ArgumentOutOfRangeException(); }
+                
+                logic.Update(product.ProductID, product);
+                return Request.CreateResponse(HttpStatusCode.OK, product);
+            }
+            catch (Exception ex)
+            {
+                var message = string.Format("Explotó todo " + ex.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+            }
         }
 
         [HttpDelete]
