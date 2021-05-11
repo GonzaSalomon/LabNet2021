@@ -15,6 +15,12 @@ namespace Trabajo.EF.Logic
             return context.Products.ToList();
         }
 
+        public Products Consult(int id)
+        {
+            var product = context.Products.FirstOrDefault(p => p.ProductID == id);
+            return product;
+        }
+
         public void Add(Products newProduct)
         {
             context.Products.Add(newProduct);
@@ -24,6 +30,8 @@ namespace Trabajo.EF.Logic
         public void Delete(int id)
         {
             var productToDelete = context.Products.Find(id);
+            OrdersLogic order = new OrdersLogic();
+            order.Update(id);
             context.Products.Remove(productToDelete);
             context.SaveChanges();
         }

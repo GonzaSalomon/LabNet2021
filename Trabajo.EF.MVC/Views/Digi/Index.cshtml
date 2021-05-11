@@ -1,0 +1,29 @@
+﻿@model List<Trabajo.EF.MVC.Models.DigiView>
+@{
+    ViewBag.Title = "Digimon Api";
+}
+
+<style>
+    th{
+        background-color:black;
+        color:gray;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Nivel</th>
+    </tr>
+    @foreach (var digimon in Model)
+    {
+    <tr>
+        <td>@digimon.Name</td>
+        <td><img src="@digimon.Img" /></td>
+        <td>@digimon.Level</td>
+    </tr>
+    }
+</table>

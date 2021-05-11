@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="NorthwindContext.cs" />
     <Compile Include="NorthwindContextCategories.cs" />
+    <Compile Include="NorthwindContextOrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
