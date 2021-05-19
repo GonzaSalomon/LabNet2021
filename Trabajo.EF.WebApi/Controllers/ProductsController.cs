@@ -54,10 +54,10 @@ namespace Trabajo.EF.WebApi.Controllers
             }
             try
             {
-                if (product.ProductID < -2147483648 || product.ProductID > 2147483647) { throw new ArgumentOutOfRangeException(); }
+                if (product.ProductID < 0 || product.ProductID > 2147483647) { throw new ArgumentOutOfRangeException(); }
                 if (product.ProductName.Length > 40) { throw new ArgumentOutOfRangeException(); }
                 if (product.UnitsInStock < 0 || product.UnitsInStock > 255) { throw new ArgumentOutOfRangeException(); }
-                if (product.UnitPrice < -922337203685477 || product.UnitPrice > 922337203685477) { throw new ArgumentOutOfRangeException(); }
+                if (product.UnitPrice < 0 || product.UnitPrice > 922337203685477) { throw new ArgumentOutOfRangeException(); }
                 
                 logic.Update(product.ProductID, product);
                 return Request.CreateResponse(HttpStatusCode.OK, product);

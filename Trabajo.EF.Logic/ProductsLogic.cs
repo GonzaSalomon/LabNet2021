@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Trabajo.EF.Data;
 using Trabajo.EF.Entities;
+using Trabajo.EF.Logic;
 
 namespace Trabajo.EF.Logic
 {
@@ -53,7 +54,7 @@ namespace Trabajo.EF.Logic
             if (productList.UnitPrice != 0) { productUpdate.UnitPrice = productList.UnitPrice; }
             if (productList.UnitsInStock != 0) { productUpdate.UnitsInStock = productList.UnitsInStock; }
             try
-            {
+            {   
                 context.SaveChanges();
             }
             catch (Exception ex)
