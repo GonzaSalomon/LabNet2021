@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col pt-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Nombre del producto</mat-label>
+          <input type="text" formControlName="product" matInput placeholder="Nombre" value="">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Precio por unidad</mat-label>
+          <input type="number" formControlName="price" matInput placeholder="Precio" value="">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Unidades en stock</mat-label>
+          <input type="number" formControlName="stock" matInput placeholder="Stock" value="">
+        </mat-form-field>
+        <br>
+        <button class="btn btn-primary" [disabled]="this.form.invalid" (click)="save(); refresh()">Guardar</button>
+
+      </form>
+
+      <br>
+      <div class="row mt-3" [formGroup]="formSearch">
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="number" class="form-control" formControlName="search" />
+          </div>
+          <button type="button" class="btn btn-primary"
+            (click)="searchProductos(formSearch.controls.search.value)">Buscar</button>
+        </div>
+        <div class="card border-success mb-3 mt-3" style="max-width: 18rem;" *ngIf="producto">
+          <div formControlName="delete" class="card-header">{{producto.ProductID}} - {{producto.ProductName}}</div>
+          <div class="card-body">${{producto.UnitPrice}}</div>
+          <div class="card-body">Unidades disponibles: {{producto.UnitsInStock}}</div>
+          <button type="button" class="btn btn-danger"
+          (click)="borrarProductos(producto.ProductID); refresh()">Eliminar</button>
+        </div> 
+      </div>
+
+
+  </div>
+  <br><br><br>
+  <button type="button" class="btn btn-primary"
+  (click)="getAll()">Buscar todos</button>
+  <div class="card border-success mb-3 mt-3" style="max-width: 18rem; padding: 10px" *ngFor="let producto of productos">
+    <div class="card-header">{{producto.ProductID}} - {{producto.ProductName}}</div>
+    <div class="card-body">${{producto.UnitPrice}}</div>
+    <div class="card-body">Unidades disponibles: {{producto.UnitsInStock}}</div>
+    <button type="button" class="btn btn-danger"
+    (click)="borrarProductos(producto.ProductID); refresh()">Eliminar</button>
+  </div> 
+</div>
