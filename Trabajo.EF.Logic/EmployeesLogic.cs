@@ -33,9 +33,8 @@ namespace Trabajo.EF.Logic
             {
                 context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
             }
         }
     }

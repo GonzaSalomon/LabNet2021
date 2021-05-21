@@ -15,9 +15,17 @@ namespace Trabajo.EF.Logic
         public async Task<List<Digimon>> GetAll()
         {
             var digidata = new DigiData();
-            var digiJson = await digidata.DigiLista();
-            List<Digimon> digiList = JsonConvert.DeserializeObject<List<Digimon>>(digiJson);
-            return digiList;
+            try
+            {
+                var digiJson = await digidata.DigiLista();
+                List<Digimon> digiList = JsonConvert.DeserializeObject<List<Digimon>>(digiJson);
+                return digiList;
+            }
+            catch (Exception)
+            {
+                List<Digimon> digiList = new List<Digimon>();
+                return digiList;
+            }
         }
     }
 }

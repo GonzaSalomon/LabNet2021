@@ -30,7 +30,6 @@ namespace Trabajo.EF.Logic
             }
             catch (Exception ex)
             {
-                throw ex;
             }
         }
     }
