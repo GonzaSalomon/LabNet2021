@@ -24,17 +24,7 @@ namespace ClasesMateLogica.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Mensaje de la Excepcion:");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Tipo de la Excepcion:");
-                Console.WriteLine(ex.GetType());
-                Console.WriteLine("StackTrace de la Excepcion:");
-                Console.WriteLine(ex.StackTrace);
                 throw ex;
-            }
-            finally
-            {
-                Console.WriteLine("La tercera operacion termino \n");
             }
 
             //Assert
@@ -53,12 +43,6 @@ namespace ClasesMateLogica.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Mensaje de la Excepcion:");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Tipo de la Excepcion:");
-                Console.WriteLine(ex.GetType());
-                Console.WriteLine("StackTrace de la Excepcion:");
-                Console.WriteLine(ex.StackTrace);
                 throw ex;
             }
 

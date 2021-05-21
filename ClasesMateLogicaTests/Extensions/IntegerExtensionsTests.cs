@@ -33,6 +33,7 @@ namespace ClasesMateLogica.Extensions.Tests
             int dividendo = 100;
             int divisor = 0;
 
+            
 
             //Act
             dividendo.Dividir(divisor);
