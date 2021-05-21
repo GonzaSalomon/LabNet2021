@@ -26,7 +26,14 @@ namespace Trabajo.EF.Logic
         {
             var categorieToDelete = context.Categories.Find(id);
             context.Categories.Remove(categorieToDelete);
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Categories> GetAll()

@@ -24,7 +24,14 @@ namespace Trabajo.EF.Logic
             {
                 orderD.ProductID = 0;
             }
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
