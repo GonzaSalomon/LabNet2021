@@ -28,8 +28,9 @@ namespace Trabajo.EF.Logic
             {
                 context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
             }
 
         }
@@ -43,15 +44,17 @@ namespace Trabajo.EF.Logic
             {
                 context.Products.Remove(productToDelete);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
             }
             try
             {
                 context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -66,8 +69,9 @@ namespace Trabajo.EF.Logic
             {
                 context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -81,8 +85,9 @@ namespace Trabajo.EF.Logic
             {
                 context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
             }
         }
     }

@@ -21,10 +21,9 @@ namespace Trabajo.EF.Logic
                 List<Digimon> digiList = JsonConvert.DeserializeObject<List<Digimon>>(digiJson);
                 return digiList;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                List<Digimon> digiList = new List<Digimon>();
-                return digiList;
+                throw ex;
             }
         }
     }
