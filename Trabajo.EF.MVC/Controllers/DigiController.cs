@@ -15,15 +15,31 @@ namespace Trabajo.EF.MVC.Controllers
     {
         public async Task<ActionResult> Index()
         {
+            try
+            {
+                DigiLogic digiLogic = new DigiLogic();
+                var prevista = await digiLogic.GetAll();
+                List<DigiView> digimonApi = prevista.Select(d => new DigiView
+                {
+                    Img = d.Img,
+                    Level = d.Level,
+                    Name = d.Name
+                }).ToList();
+                return View(digimonApi);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return RedirectToAction("Index", "Error", ex);
+            }
+            catch (NullReferenceException ex)
+            {
+                return RedirectToAction("Index", "Error", ex);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error", ex);
+            }
 
-            DigiLogic digiLogic = new DigiLogic();
-            var prevista = await digiLogic.GetAll();
-            List<DigiView> digimonApi = prevista.Select(d => new DigiView {
-                Img = d.Img,
-                Level = d.Level,
-                Name = d.Name
-            }).ToList();
-            return View(digimonApi);
         }
     }
 }
