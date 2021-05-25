@@ -11,47 +11,47 @@ namespace Trabajo.EF.UI
 {
     public class MenuUI
     {
-        public void FunctionMenu(ProductsLogic productsList, EmployeesLogic employeesList, CategoriesLogic categoriesList, int optionMenu)
+        public void FunctionMenu(int optionMenu)
         {
             switch (optionMenu)
             {
                 case 1:
                     Console.WriteLine("\n\nListado de productos: \n");
-                    ProductsUI.ShowProducts(productsList);
+                    ProductsUI.ShowProducts();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 2:
                     Console.WriteLine("\n\nListado de empleados: \n");
-                    EmployeesUI.ShowEmployees(employeesList);
+                    EmployeesUI.ShowEmployees();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 3:
                     Console.WriteLine("\n\nListado de categorías: ");
-                    CategoriesUI.ShowCategories(categoriesList);
+                    CategoriesUI.ShowCategories();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 4:
-                    CategoriesUI.DeleteCategories(categoriesList, productsList);
+                    CategoriesUI.DeleteCategories();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 5:
-                    ProductsUI.InsertProducts(productsList);
+                    ProductsUI.InsertProducts();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 6:
-                    EmployeesUI.UpdateEmployees(employeesList);
+                    EmployeesUI.UpdateEmployees();
                     optionMenu = 0;
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    FunctionMenu(optionMenu);
                     break;
 
                 case 7:
@@ -67,8 +67,15 @@ namespace Trabajo.EF.UI
                     Console.WriteLine("6 - Modificar información de un empleado");
                     Console.WriteLine("7 - Salir del programa");
                     Console.WriteLine("Elija que desea realizar:");
-                    optionMenu = MenuExceptions.ExceptionSwitch();
-                    FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+                    try
+                    {
+                        optionMenu = MenuExceptions.ExceptionSwitch();
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("\nOcurrió un error. Por favor vuelva a intentar\n");
+                    }
+                    FunctionMenu(optionMenu);
                     break;
             }
         }
@@ -80,7 +87,7 @@ namespace Trabajo.EF.UI
             CategoriesLogic categoriesList = new CategoriesLogic();
             int optionMenu = 0;
 
-            FunctionMenu(productsList, employeesList, categoriesList, optionMenu);
+            FunctionMenu(optionMenu);
         }
 
     }

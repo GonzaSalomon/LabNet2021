@@ -11,8 +11,9 @@ namespace Trabajo.EF.UI
 {
     public class ProductsUI
     {
-        public static void ShowProducts(ProductsLogic productsList)
+        public static void ShowProducts()
         {
+            ProductsLogic productsList = new ProductsLogic();
             foreach (Products product in productsList.GetAll())
             {
                 Console.WriteLine($"Producto: {product.ProductID} - {product.ProductName} \n\tPrecio: " +
@@ -20,34 +21,59 @@ namespace Trabajo.EF.UI
             }
         }
 
-        public static void InsertProducts(ProductsLogic productsList)
+        public static void InsertProducts()
         {
-            Console.WriteLine("\nIngrese el nombre del producto: ");
-            string productNameVar = InsertException.ExceptionString();
-            Console.WriteLine("\nIngrese el precio del producto: ");
-            int unitPriceVar = InsertException.ExceptionInt();
-            Console.WriteLine("\nIngrese la cantidad de stock disponible: ");
-            short unitsInStockVar = InsertException.ExceptionSmallInt();
+            ProductsLogic productsList = new ProductsLogic();
 
-            productsList.Add(new Products
+            try
             {
-                ProductName = productNameVar,
-                UnitPrice = unitPriceVar,
-                UnitsInStock = unitsInStockVar,
-                Discontinued = false
-            });
+                Console.WriteLine("\nIngrese el nombre del producto: ");
+                string productNameVar = InsertException.ExceptionString();
+                Console.WriteLine("\nIngrese el precio del producto: ");
+                int unitPriceVar = InsertException.ExceptionInt();
+                Console.WriteLine("\nIngrese la cantidad de stock disponible: ");
+                short unitsInStockVar = InsertException.ExceptionSmallInt();
 
-            Console.WriteLine("\n\nListado de productos actualizado: \n");
-            ShowProducts(productsList);
+                productsList.Add(new Products
+                {
+                    ProductName = productNameVar,
+                    UnitPrice = unitPriceVar,
+                    UnitsInStock = unitsInStockVar,
+                    Discontinued = false
+                });
+
+                Console.WriteLine("\n\nListado de productos actualizado: \n");
+                ShowProducts();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nNo se pudo cargar el producto");
+                Console.WriteLine("\nMensaje de error: " + ex.Message);
+                Console.WriteLine("\nStackTrace" + ex.StackTrace);
+            }
+            
         }
 
-        public static void DeleteProducts(ProductsLogic productsList)
+        public static void DeleteProducts()
         {
+            ProductsLogic productsList = new ProductsLogic();
+
             Console.WriteLine("Ingrese el id del producto que desea eliminar: ");
-            int productIdVar = InsertException.ExceptionInt();
-            productsList.Delete(productIdVar);
-            Console.WriteLine("\n\nListado de productos actualizado: \n");
-            ShowProducts(productsList);
+            try
+            {
+                int productIdVar = InsertException.ExceptionInt();
+
+                productsList.Delete(productIdVar);
+
+                Console.WriteLine("\n\nListado de productos actualizado: \n");
+                ShowProducts();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nNo se pudo eliminar el producto");
+                Console.WriteLine("\nMensaje de error: " + ex.Message);
+                Console.WriteLine("\nStackTrace" + ex.StackTrace);
+            }
         }
 
     }

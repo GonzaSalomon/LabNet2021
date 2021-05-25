@@ -22,14 +22,30 @@ namespace Trabajo.EF.Logic
 
         public List<Employees> GetAll()
         {
-            return context.Employees.ToList();
+            try
+            {
+                return context.Employees.ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Update(Employees employee)
         {
             var employeeUpdate = context.Employees.Find(employee.EmployeeID);
             employeeUpdate.PostalCode = employee.PostalCode;
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

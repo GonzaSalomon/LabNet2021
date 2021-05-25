@@ -18,14 +18,30 @@ namespace Trabajo.EF.Logic
         public void Add(Products newProduct)
         {
             context.Products.Add(newProduct);
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Delete(int id)
         {
             var productToDelete = context.Products.Find(id);
             context.Products.Remove(productToDelete);
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Update(Products productList)
@@ -35,7 +51,15 @@ namespace Trabajo.EF.Logic
             {
                 products.CategoryID = null;
             }
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
